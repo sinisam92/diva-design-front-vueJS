@@ -1,0 +1,67 @@
+.carousel-inner {
+    .active {
+        img {
+            transition: all 4s ease-out;
+            transform: scale(1.1);
+        }
+    }
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.blog-post img {
+    width: 500px;
+    height: 320px;
+    // border: 3px solid black;
+}
+
+.row {
+    padding-top: 30px;
+    display: flex;
+}
+
+.column {
+    padding-top: 20px;
+    flex: 50%;
+}
+
+.post-container {
+    width: 420px;
+    display: inline-block;
+    font-family: "Arima Madurai", cursive;
+    color: #4a4a4a;
+
+    .blog-post-title {
+        font-family: "Oranienbaum", serif;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        line-height: 30px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .read-more {
+        a {
+            color: purple;
+
+            &:hover {
+                color: darkmagenta;
+            }
+        }
+    }
+}
+
+div#carousel-fade.carousel.slide.carousel-fade ol#carousel-fade___BV_indicators_.carousel-indicators {
+    li {
+        background-color: #e4c7d9;
+    }
+}

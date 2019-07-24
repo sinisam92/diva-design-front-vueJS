@@ -1,0 +1,23 @@
+@import "variables";
+
+.row-div {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+.new-additions-title {
+    border-bottom: 1px solid $dark-purple;
+    text-align: left;
+
+    .title {
+        font-size: 30px;
+        color: $dark-purple;
+        font-family: $titles;
+    }
+}
+
+.product-div {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
