@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import jQuery from 'jquery';
+import jQuery from "jquery";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import About from "./components/About";
@@ -12,34 +12,28 @@ import Earrings from "./components/partials/subpages/Earrings";
 import Necklaces from "./components/partials/subpages/Necklaces";
 import CreateBlog from "./components/partials/CreateBlog";
 
-
-
-import BootstrapVue from 'bootstrap-vue';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import BootstrapVue from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.use(BootstrapVue);
 // import CKEditor from '@ckeditor/ckeditor5-vue';
 // import VueCkeditor from "vue-ckeditor2";
 
-
-
 // Vue.use(CKEditor);
 // Vue.use(VueCkeditor);
-
-
 
 Vue.use({
   install(Vue) {
     Vue.jQuery = jQuery;
     Vue.prototype.$jQuery = jQuery;
   }
-})
+});
 
 Vue.use(VueRouter);
 
-
-const routes = [{
+const routes = [
+  {
     path: "/",
     redirect: "/home"
   },
@@ -102,10 +96,8 @@ const router = new VueRouter({
     return {
       x: 0,
       y: 0
-    }
+    };
   }
 });
-
-
 
 export default router;

@@ -1,67 +1,102 @@
 .carousel-inner {
-    .active {
-        img {
-            transition: all 4s ease-out;
-            transform: scale(1.1);
-        }
+  .active {
+    img {
+      transition: all 4s ease-out;
+      transform: scale(1.1);
     }
+  }
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
-
-.blog-post img {
-    width: 500px;
-    height: 320px;
-    // border: 3px solid black;
-}
-
 .row {
-    padding-top: 30px;
+  display: block;
+  padding-top: 30px;
+  .blog-post {
     display: flex;
+    .blog-post-image {
+      flex: 0 0 65%;
+      img {
+        width: 500px;
+        height: 320px;
+        // border: 3px solid black;
+      }
+    }
+    .post-container {
+      flex: 1;
+    }
+  }
+  .blog-post:nth-child(2) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin-left: 10%;
+    .post-container {
+      -moz-box-ordinal-group: 1;
+      -ms-flex-order: 1;
+      -webkit-order: 1;
+      order: 1;
+    }
+    .blog-post-image {
+      -webkit-box-ordinal-group: 2;
+      -moz-box-ordinal-group: 2;
+      -ms-flex-order: 2;
+      -webkit-order: 2;
+      order: 2;
+    }
+  }
 }
 
 .column {
-    padding-top: 20px;
-    flex: 50%;
+  padding-top: 20px;
+  //   flex: 50%;
 }
 
 .post-container {
-    width: 420px;
-    display: inline-block;
-    font-family: "Arima Madurai", cursive;
-    color: #4a4a4a;
+  position: relative;
+  width: 420px;
+  display: inline-block;
+  font-family: "Arima Madurai", cursive;
+  color: #4a4a4a;
 
-    .blog-post-title {
-        font-family: "Oranienbaum", serif;
-        font-size: 30px;
-        font-weight: 600;
-        letter-spacing: 4px;
-        line-height: 30px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+  .blog-post-title {
+    font-family: "Oranienbaum", serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    line-height: 30px;
+    padding-top: 20px;
+    padding-bottom: 8px;
+  }
+  .blog-post-content {
+    padding-top: 20px;
+  }
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    a {
+      color: purple;
+
+      &:hover {
+        color: darkmagenta;
+      }
     }
-
-    p {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-    }
-
-    .read-more {
-        a {
-            color: purple;
-
-            &:hover {
-                color: darkmagenta;
-            }
-        }
-    }
+  }
 }
 
-div#carousel-fade.carousel.slide.carousel-fade ol#carousel-fade___BV_indicators_.carousel-indicators {
-    li {
-        background-color: #e4c7d9;
-    }
+div#carousel-fade.carousel.slide.carousel-fade
+  ol#carousel-fade___BV_indicators_.carousel-indicators {
+  li {
+    background-color: #e4c7d9;
+  }
 }

@@ -67,7 +67,7 @@
 
     <div class="row">
       <div class="blog-post column" v-for="blog in blogs" :key="blog.id">
-        <div>
+        <div class="blog-post-image">
           <img :src="blog.image_url" alt="Sorry! :(" />
         </div>
         <div class="post-container">
@@ -83,8 +83,8 @@
       </div>
     </div>
     <hr />
-    <router-link to="/create-blog">
-      <button class="btn btn-outline-dark" v-if="user.id === 1">Create New Blog</button>
+    <router-link to="/create-blog" v-if="user && user.id === 1">
+      <button class="btn btn-outline-dark">Create New Blog</button>
     </router-link>
   </div>
 </template>
@@ -127,7 +127,6 @@ export default {
       next(vm => {
         vm.blogs = blogs.blogs.data;
         vm.last_page = blogs.last_page;
-        console.log(vm.blogs);
       });
     });
   }

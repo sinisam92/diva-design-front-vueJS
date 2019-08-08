@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <Header v-if="['home'].includes($route.name)"/>
+    <Header v-if="['home'].includes($route.name)" />
     <div class="container">
       <router-view></router-view>
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
