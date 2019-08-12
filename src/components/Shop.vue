@@ -34,14 +34,13 @@
           </ul>
         </div>
 
-        <strong>Sort By:</strong>
+        <!-- <strong>Sort By:</strong>
         <select v-model="sortBy">
           <option value="name">Product Name</option>
           <option value="color">Color</option>
           <option value="size">Size</option>
-        </select>
+        </select>-->
       </div>
-      {{shops}}
       <div class="row-div">
         <div class="product-div" v-for="shop in computedProducts" :key="shop.id">
           <div class="product-image-div">
@@ -91,22 +90,22 @@ export default {
       user: "getUser"
     }),
     computedProducts() {
-      return this.shops
-        .filter(item => {
-          console.log(item);
+      return this.shops.filter(item => {
+        console.log(item);
 
-          return (
-            (this.keyword.length === 0 || item.title.includes(this.keyword)) &&
-            (this.colors.length === 0 || this.colors.includes(item.color)) &&
-            (this.sizes.length === 0 || this.sizes.includes(item.size)) &&
-            (this.type.length === 0 || item.type.includes(item.type))
-          );
-        })
-        .sort((a, b) => {
-          return a[this.sortBy]
-            .toLowerCase()
-            .localeCompare(b[this.sortBy].toLowerCase());
-        });
+        return (
+          (this.keyword.length === 0 ||
+            item.title.toLowerCase().includes(this.keyword.toLowerCase())) &&
+          (this.colors.length === 0 || this.colors.includes(item.color)) &&
+          (this.sizes.length === 0 || this.sizes.includes(item.size)) &&
+          (this.type.length === 0 || item.type.includes(this.type))
+        );
+      });
+      // .sort((a, b) => {
+      //   return a[this.sortBy]
+      //     .toLowerCase()
+      //     .localeCompare(b[this.sortBy].toLowerCase());
+      // });
     }
   },
   beforeRouteEnter(to, from, next) {
