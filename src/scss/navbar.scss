@@ -2,7 +2,7 @@
   padding-top: 30px;
 }
 
-.nav-items {
+.nav-item {
   display: inline;
   font-size: 2em;
   padding-right: 60px;
@@ -10,13 +10,12 @@
   font-family: "Oranienbaum", serif;
   letter-spacing: 4px;
   color: black;
+  &:hover {
+    color: darkmagenta;
+  }
 }
 
-.nav-items:hover {
-  color: darkmagenta;
-}
-
-.nav-items.router-link-active {
+.nav-item.router-link-active {
   color: darkmagenta;
 }
 
@@ -47,6 +46,13 @@ nav ul {
   margin: 0;
   padding-right: 60px;
   margin-top: 20px;
+  li {
+    list-style: none;
+    display: inline-block;
+    a {
+      outline: none;
+    }
+  }
 }
 
 .black {

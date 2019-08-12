@@ -15,12 +15,26 @@ a:hover {
   padding-top: 30px;
   .blog-post {
     display: flex;
+    padding-bottom: 50px;
+    &:hover {
+      .blog-post-image {
+        transition: 0.4s;
+        filter: brightness(115%);
+      }
+      .blog-post-title {
+        color: darkmagenta;
+      }
+      .read-more {
+        a {
+          color: darkmagenta;
+        }
+      }
+    }
     .blog-post-image {
-      flex: 0 0 65%;
       img {
-        width: 500px;
+        width: 530px;
         height: 320px;
-        // border: 3px solid black;
+        border-radius: 10px;
       }
     }
     .post-container {
@@ -33,12 +47,14 @@ a:hover {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    margin-left: 10%;
     .post-container {
       -moz-box-ordinal-group: 1;
       -ms-flex-order: 1;
       -webkit-order: 1;
       order: 1;
+      .read-more {
+        right: initial;
+      }
     }
     .blog-post-image {
       -webkit-box-ordinal-group: 2;
@@ -61,6 +77,8 @@ a:hover {
   display: inline-block;
   font-family: "Arima Madurai", cursive;
   color: #4a4a4a;
+  margin-left: 15px;
+  margin-right: 15px;
 
   .blog-post-title {
     font-family: "Oranienbaum", serif;
@@ -70,13 +88,19 @@ a:hover {
     line-height: 30px;
     padding-top: 20px;
     padding-bottom: 8px;
+    color: #4a4a4a;
+    &:hover {
+      color: darkmagenta;
+    }
   }
   .blog-post-content {
     padding-top: 20px;
   }
-  p {
+  .blog-post-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
   }
 
@@ -85,7 +109,7 @@ a:hover {
     bottom: 0;
     right: 0;
     a {
-      color: purple;
+      color: #4a4a4a;
 
       &:hover {
         color: darkmagenta;

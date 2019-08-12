@@ -1,23 +1,47 @@
 @import "variables";
 
 .row-div {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  .product-div {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .product-image-div {
+      img {
+        border-radius: 15px;
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
 }
 
 .new-additions-title {
-    border-bottom: 1px solid $dark-purple;
-    text-align: left;
+  border-bottom: 1px solid $dark-purple;
+  text-align: left;
 
-    .title {
-        font-size: 30px;
-        color: $dark-purple;
-        font-family: $titles;
-    }
+  .title {
+    font-size: 30px;
+    color: $dark-purple;
+    font-family: $titles;
+  }
+}
+.filter {
+  position: fixed;
+  left: 0;
+  top: 30%;
+  .search {
+    padding-left: 15px;
+  }
 }
 
-.product-div {
-    padding-top: 50px;
-    padding-bottom: 50px;
+.type {
+  display: block;
+  ul {
+    text-align: left;
+    li {
+      list-style: none;
+    }
+  }
 }

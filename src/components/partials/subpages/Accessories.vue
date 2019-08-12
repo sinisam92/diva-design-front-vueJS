@@ -1,14 +1,15 @@
 <template>
   <div class="page-wrapper">
-    <CategoryShopCarusel/>
-    <ShopNavBar/>
+    <CategoryShopCarusel />
+    <ShopNavBar v-model="emial" />
+    {{email}}
     <div class="category-title">
       <h1 class="title">Accessories</h1>
     </div>
     <div class="row-div">
       <div class="product-div" v-for="shop in filteredProducts" :key="shop.id">
         <div class="product-content">
-          <img class="product-image" :src="shop.image_url" alt>
+          <img class="product-image" :src="shop.image_url" alt />
           <div class="product-title">
             <h3>{{shop.title}}</h3>
           </div>
@@ -36,7 +37,8 @@ export default {
   data() {
     return {
       shops: [],
-      type: "accessory"
+      type: "accessory",
+      email: ""
     };
   },
   created() {

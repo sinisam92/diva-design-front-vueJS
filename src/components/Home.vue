@@ -74,7 +74,9 @@
           <div class="blog-post-date">
             <span>{{ blog.created_at | formatDate }}</span>
           </div>
-          <div class="blog-post-title">{{ blog.title }}</div>
+          <router-link :to="{ name: 'single-blog', params: { id: blog.id }}">
+            <div class="blog-post-title">{{ blog.title }}</div>
+          </router-link>
           <div class="blog-post-content">{{ blog.content }}</div>
           <div class="read-more">
             <router-link :to="{ name: 'single-blog', params: { id: blog.id }}">Read more &#10093;</router-link>
@@ -82,7 +84,6 @@
         </div>
       </div>
     </div>
-    <hr />
     <router-link to="/create-blog" v-if="user && user.id === 1">
       <button class="btn btn-outline-dark">Create New Blog</button>
     </router-link>

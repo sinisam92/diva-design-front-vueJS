@@ -3,16 +3,24 @@
     <nav class="shop-menu">
       <ul>
         <li>
-          <router-link class="link-item" to="/shop/accessories">accessories</router-link>
+          <!-- <router-link class="link-item" to="/shop/accessories">accessories</!-->
+          <input id="accessories" type="checkbox" v-model="type" value="accessories" />
+          <label for="accessories">Accessories</label>
         </li>
         <li>
-          <router-link class="link-item" to="/shop/necklaces">necklaces</router-link>
+          <!-- <router-link class="link-item" v-model="email" to="/shop/necklaces">necklaces</router-link> -->
+          <input id="necklaces" type="checkbox" v-model="type" value="necklaces" />
+          <label for="necklaces">Necklaces</label>
         </li>
         <li>
-          <router-link class="link-item" to="/shop/bracelets">bracelets</router-link>
+          <!-- <router-link class="link-item" to="/shop/bracelets">bracelets</router-link> -->
+          <input id="bracelets" type="checkbox" v-model="type" value="bracelets" />
+          <label for="bracelets">Bracelets</label>
         </li>
         <li>
-          <router-link class="link-item" to="/shop/earrings">earrings</router-link>
+          <!-- <router-link class="link-item" to="/shop/earrings">earrings</router-link> -->
+          <input id="earrings" type="checkbox" v-model="type" value="earrings" />
+          <label for="earrings">Earrings</label>
         </li>
       </ul>
     </nav>
@@ -20,7 +28,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  prop: ["value"],
+  data() {
+    return {
+      type: []
+    };
+  },
+  methods: {
+    handleInput() {
+      this.$emit("input", this.type);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

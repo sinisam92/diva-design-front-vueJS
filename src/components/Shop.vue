@@ -1,13 +1,52 @@
 <template>
   <div>
     <div class="container">
-      <ShopNavBar/>
+      <!-- <ShopNavBar /> -->
       <div class="new-additions-title">
         <h1 class="title">OUR NEWEST ADDITIONS</h1>
       </div>
+      <div class="filter">
+        <div class="search">
+          <input type="text" v-model="keyword" placeholder="Search" />
+        </div>
+        <div class="type">
+          <span>
+            <strong>Type:</strong>
+          </span>
+          <br />
+          <ul>
+            <li>
+              <label for="accessory">Accessories:</label>
+              <input name="accessory" type="checkbox" v-model="type" value="accessory" />
+            </li>
+            <li>
+              <label for="necklace">Necklaces:</label>
+              <input name="necklace" type="checkbox" v-model="type" value="necklace" />
+            </li>
+            <li>
+              <label for="bracelet">Bracelets:</label>
+              <input name="bracelet" type="checkbox" v-model="type" value="bracelet" />
+            </li>
+            <li>
+              <label for="earring">Earrings:</label>
+              <input name="earring" type="checkbox" v-model="type" value="earring" />
+            </li>
+          </ul>
+        </div>
+
+        <strong>Sort By:</strong>
+        <select v-model="sortBy">
+          <option value="name">Product Name</option>
+          <option value="color">Color</option>
+          <option value="size">Size</option>
+        </select>
+      </div>
+      {{shops}}
       <div class="row-div">
-        <div class="product-div" v-for="shop in shops" :key="shop.id">
-          <img class="product-image" :src="shop.image_url" alt>
+        <div class="product-div" v-for="shop in computedProducts" :key="shop.id">
+          <div class="product-image-div">
+            <img class="product-image" :src="shop.image_url" alt />
+          </div>
           <div class="product-title">
             <h3>{{shop.title}}</h3>
           </div>
@@ -19,8 +58,8 @@
           </div>
         </div>
       </div>
-      <AddNewProduct v-if="user"/>
-      <hr>
+      <AddNewProduct v-if="user && user.id === 1" />
+      <hr />
     </div>
   </div>
 </template>
@@ -38,23 +77,37 @@ export default {
   data() {
     return {
       newProduct: {},
-      shops: {}
+      shops: [],
+      keyword: "",
+      type: [],
+      sortBy: "name",
+      colors: [],
+      sizes: []
     };
   },
-  // created() {
-  //   shopService
-  //     .getShop()
-  //     .then(response => {
-  //       this.shops = response.shop.data;
-  //     })
-  //     .catch(error => {
-  //       this.errors = error.response.data.errors;
-  //     });
-  // },
+
   computed: {
     ...mapGetters({
       user: "getUser"
-    })
+    }),
+    computedProducts() {
+      return this.shops
+        .filter(item => {
+          console.log(item);
+
+          return (
+            (this.keyword.length === 0 || item.title.includes(this.keyword)) &&
+            (this.colors.length === 0 || this.colors.includes(item.color)) &&
+            (this.sizes.length === 0 || this.sizes.includes(item.size)) &&
+            (this.type.length === 0 || item.type.includes(item.type))
+          );
+        })
+        .sort((a, b) => {
+          return a[this.sortBy]
+            .toLowerCase()
+            .localeCompare(b[this.sortBy].toLowerCase());
+        });
+    }
   },
   beforeRouteEnter(to, from, next) {
     shopService.getShop().then(blogs => {

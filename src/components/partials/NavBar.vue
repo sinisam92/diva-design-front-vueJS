@@ -10,10 +10,17 @@
           <span id="user-name" v-if="user">Hello, {{user.first_name}} {{user.last_name}}</span>
         </div>-->
         <ul>
-          <router-link class="nav-items" to="/home">Home</router-link>
-          <router-link class="nav-items" to="/shop">Shop</router-link>
-          <router-link class="nav-items" to="/about">About Us</router-link>
-          <li id="logout" v-if="user" class="nav-items" @click="logoutOnSubmit">Logout</li>
+          <li>
+            <router-link class="nav-item" to="/home">Home</router-link>
+          </li>
+          <li>
+            <router-link class="nav-item" to="/shop">Shop</router-link>
+          </li>
+          <li>
+            <router-link class="nav-item" to="/about">About Us</router-link>
+          </li>
+
+          <li id="logout" v-if="user" class="nav-item" @click="logoutOnSubmit">Logout</li>
         </ul>
       </nav>
     </div>
