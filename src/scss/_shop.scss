@@ -34,14 +34,16 @@
   .search {
     padding-left: 15px;
   }
-}
-
-.type {
-  display: block;
-  ul {
-    text-align: left;
-    li {
-      list-style: none;
+  .type {
+    display: block;
+    ul {
+      text-align: left;
+      li {
+        list-style: none;
+      }
     }
+  }
+  input[type="checkbox"]:checked + label {
+    border: 5px;
   }
 }

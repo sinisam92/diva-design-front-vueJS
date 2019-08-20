@@ -16,30 +16,27 @@
           <br />
           <ul>
             <li>
+              <label for="all">All:</label>
+              <input id="all" type="checkbox" v-model="allTypes" value="all" />
+            </li>
+            <li>
               <label for="accessory">Accessories:</label>
-              <input name="accessory" type="checkbox" v-model="type" value="accessory" />
+              <input id="accessory" type="radio" v-model="type" value="accessory" />
             </li>
             <li>
               <label for="necklace">Necklaces:</label>
-              <input name="necklace" type="checkbox" v-model="type" value="necklace" />
+              <input id="necklace" type="radio" v-model="type" value="necklace" />
             </li>
             <li>
               <label for="bracelet">Bracelets:</label>
-              <input name="bracelet" type="checkbox" v-model="type" value="bracelet" />
+              <input id="bracelet" type="radio" v-model="type" value="bracelet" />
             </li>
             <li>
               <label for="earring">Earrings:</label>
-              <input name="earring" type="checkbox" v-model="type" value="earring" />
+              <input id="earring" type="radio" v-model="type" value="earring" />
             </li>
           </ul>
         </div>
-
-        <!-- <strong>Sort By:</strong>
-        <select v-model="sortBy">
-          <option value="name">Product Name</option>
-          <option value="color">Color</option>
-          <option value="size">Size</option>
-        </select>-->
       </div>
       <div class="row-div">
         <div class="product-div" v-for="shop in computedProducts" :key="shop.id">
@@ -57,22 +54,19 @@
           </div>
         </div>
       </div>
-      <AddNewProduct v-if="user && user.id === 1" />
+      <router-link to="add-new-product" v-if="user && user.id === 1">
+        <button>Add New Product</button>
+      </router-link>
       <hr />
     </div>
   </div>
 </template>
 
 <script>
-import ShopNavBar from "./../components/partials/ShopNavBar";
-import AddNewProduct from "./../components/partials/AddNewProduct";
 import shopService from "./../services/shop-service";
 import { mapGetters } from "vuex";
 export default {
-  components: {
-    ShopNavBar,
-    AddNewProduct
-  },
+  components: {},
   data() {
     return {
       newProduct: {},
@@ -80,8 +74,7 @@ export default {
       keyword: "",
       type: [],
       sortBy: "name",
-      colors: [],
-      sizes: []
+      allTypes: []
     };
   },
 
@@ -90,22 +83,17 @@ export default {
       user: "getUser"
     }),
     computedProducts() {
-      return this.shops.filter(item => {
-        console.log(item);
-
-        return (
-          (this.keyword.length === 0 ||
-            item.title.toLowerCase().includes(this.keyword.toLowerCase())) &&
-          (this.colors.length === 0 || this.colors.includes(item.color)) &&
-          (this.sizes.length === 0 || this.sizes.includes(item.size)) &&
-          (this.type.length === 0 || item.type.includes(this.type))
-        );
-      });
-      // .sort((a, b) => {
-      //   return a[this.sortBy]
-      //     .toLowerCase()
-      //     .localeCompare(b[this.sortBy].toLowerCase());
-      // });
+      if (this.allTypes.includes("all")) {
+        return this.shops;
+      } else {
+        return this.shops.filter(item => {
+          return (
+            (this.keyword.length === 0 ||
+              item.title.toLowerCase().includes(this.keyword.toLowerCase())) &&
+            (this.type.length === 0 || item.type.includes(this.type))
+          );
+        });
+      }
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -113,7 +101,6 @@ export default {
       next(vm => {
         vm.shops = blogs.shop.data;
         vm.last_page = blogs.last_page;
-        console.log(vm.shops);
       });
     });
   }

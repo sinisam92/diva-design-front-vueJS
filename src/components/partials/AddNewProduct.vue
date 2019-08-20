@@ -2,46 +2,41 @@
   <div>
     <form @submit.prevent="addNewProduct">
       <div class="form-content">
-        <input type="text" v-model="newProduct.title" id="title" name="title" placeholder="Tttle">
-        <input type="number" v-model="newProduct.price" id="price" name="price" placeholder="Price">
+        <input type="text" v-model="newProduct.title" id="title" name="title" placeholder="Tttle" />
+        <input type="number" v-model="newProduct.price" id="price" name="price" placeholder="Price" />
         <input
           type="text"
           v-model="newProduct.description"
           name="description"
           placeholder="Description"
-        >
+        />
         <input
           type="url"
           v-model="newProduct.image_url"
           name="image_url"
           placeholder="Image Url Address"
-        >
+        />
       </div>
       <div>
         <div class="form-check-inline">
-          <input type="radio" value="accessory" v-model="newProduct.type">
+          <input type="radio" value="accessory" v-model="newProduct.type" />
           <label class="form-check-label">ACCESSORY</label>
         </div>
         <div class="form-check-inline">
-          <input type="radio" value="necklace" v-model="newProduct.type">
+          <input type="radio" value="necklace" v-model="newProduct.type" />
           <label class="form-check-label">NECKLACE</label>
         </div>
         <div class="form-check-inline">
-          <input type="radio" value="bracelet" v-model="newProduct.type">
+          <input type="radio" value="bracelet" v-model="newProduct.type" />
           <label class="form-check-label">BRACELET</label>
         </div>
         <div class="form-check-inline">
-          <input type="radio" value="earring" v-model="newProduct.type">
+          <input type="radio" value="earring" v-model="newProduct.type" />
           <label class="form-check-label">EARRING</label>
         </div>
       </div>
-      <!-- <input type="checkbox" value="ACCESSORIES" name="type"/>
-			<input type="checkbox" value="NECKLACES" name="type"/>
-			<input type="checkbox" value="BRACELETS" name="type"/>
-      <input type="checkbox" value="EARRINGS" name="type"/>-->
       <button type="submit" class="btn btn-outline-dark">Add product</button>
     </form>
-    {{newProduct}}
   </div>
 </template>
 
@@ -59,7 +54,7 @@ export default {
       shopService
         .addProduct(this.newProduct)
         .then(() => {
-          this.$router.push({ name: "shop" });
+          this.$router.push({ path: "/shop" });
           // this.$router.go(0);
         })
         .catch(error => {

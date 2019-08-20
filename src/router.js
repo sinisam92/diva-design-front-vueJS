@@ -6,11 +6,8 @@ import Shop from "./components/Shop";
 import About from "./components/About";
 import Login from "./components/Auth/Login";
 import SingleBlog from "./components/SingleBlog";
-import Accessories from "./components/partials/subpages/Accessories";
-import Bracelets from "./components/partials/subpages/Bracelets";
-import Earrings from "./components/partials/subpages/Earrings";
-import Necklaces from "./components/partials/subpages/Necklaces";
 import CreateBlog from "./components/partials/CreateBlog";
+import AddNewProduct from "./components/partials/AddNewProduct";
 
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
@@ -48,26 +45,6 @@ const routes = [
     component: Shop
   },
   {
-    name: "accessories",
-    path: "/shop/accessories",
-    component: Accessories
-  },
-  {
-    name: "bracelets",
-    path: "/shop/bracelets",
-    component: Bracelets
-  },
-  {
-    name: "earrings",
-    path: "/shop/earrings",
-    component: Earrings
-  },
-  {
-    name: "necklaces",
-    path: "/shop/necklaces",
-    component: Necklaces
-  },
-  {
     name: "about",
     path: "/about",
     component: About
@@ -86,6 +63,11 @@ const routes = [
     name: "create-blog",
     path: "/create-blog",
     component: CreateBlog
+  },
+  {
+    name: "add-new-product",
+    path: "/add-new-product",
+    component: AddNewProduct
   }
 ];
 
