@@ -1,0 +1,27 @@
+.flex {
+  //   display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  .product-info {
+    margin: 0 auto;
+    width: 100%;
+    .product-title {
+      text-transform: uppercase;
+    }
+    .product-description {
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .product-price {
+      text-align: right;
+    }
+  }
+  .product-image-div {
+    img {
+      border-radius: 15px;
+      width: 100%;
+    }
+  }
+}

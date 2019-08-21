@@ -2,8 +2,26 @@
   <div>
     <form @submit.prevent="addNewProduct">
       <div class="form-content">
-        <input type="text" v-model="newProduct.title" id="title" name="title" placeholder="Tttle" />
-        <input type="number" v-model="newProduct.price" id="price" name="price" placeholder="Price" />
+        <input
+          type="text"
+          v-model="newProduct.title"
+          id="title"
+          name="title"
+          placeholder="Tttle"
+          required
+        />
+        <input
+          type="number"
+          v-model="newProduct.price"
+          id="price"
+          name="price"
+          placeholder="Price"
+          required
+        />
+        <select v-model="newProduct.currency" class="custom-select mr-sm-2" required>
+          <option disabled hidden value>Choose currency</option>
+          <option v-for="item in items" :value="item.val" :key="item.id">{{item.val}}</option>
+        </select>
         <input
           type="text"
           v-model="newProduct.description"
@@ -15,25 +33,57 @@
           v-model="newProduct.image_url"
           name="image_url"
           placeholder="Image Url Address"
+          required
         />
       </div>
       <div>
-        <div class="form-check-inline">
-          <input type="radio" value="accessory" v-model="newProduct.type" />
-          <label class="form-check-label">ACCESSORY</label>
-        </div>
-        <div class="form-check-inline">
-          <input type="radio" value="necklace" v-model="newProduct.type" />
-          <label class="form-check-label">NECKLACE</label>
-        </div>
-        <div class="form-check-inline">
-          <input type="radio" value="bracelet" v-model="newProduct.type" />
-          <label class="form-check-label">BRACELET</label>
-        </div>
-        <div class="form-check-inline">
-          <input type="radio" value="earring" v-model="newProduct.type" />
-          <label class="form-check-label">EARRING</label>
-        </div>
+        <form>
+          <div class="form-check-inline">
+            <input
+              id="radio1"
+              type="radio"
+              value="accessory"
+              class="radio"
+              name="type"
+              v-model="newProduct.type"
+              required
+            />
+            <label for="radio1" class="form-check-label">ACCESSORY</label>
+          </div>
+          <div class="form-check-inline">
+            <input
+              id="radio2"
+              type="radio"
+              value="necklace"
+              class="radio"
+              name="type"
+              v-model="newProduct.type"
+            />
+            <label for="radio2" class="form-check-label">NECKLACE</label>
+          </div>
+          <div class="form-check-inline">
+            <input
+              id="radio3"
+              type="radio"
+              value="bracelet"
+              class="radio"
+              name="type"
+              v-model="newProduct.type"
+            />
+            <label for="radio3" class="form-check-label">BRACELET</label>
+          </div>
+          <div class="form-check-inline">
+            <input
+              id="radio4"
+              type="radio"
+              value="earring"
+              class="radio"
+              name="type"
+              v-model="newProduct.type"
+            />
+            <label for="radio4" class="form-check-label">EARRING</label>
+          </div>
+        </form>
       </div>
       <button type="submit" class="btn btn-outline-dark">Add product</button>
     </form>
@@ -45,8 +95,11 @@ import shopService from "./../../services/shop-service";
 export default {
   data() {
     return {
-      newProduct: {},
-      errors: []
+      newProduct: {
+        currency: ""
+      },
+      errors: [],
+      items: [{ id: 1, val: "RSD" }, { id: 2, val: "€" }, { id: 3, val: "$" }]
     };
   },
   methods: {
@@ -55,47 +108,15 @@ export default {
         .addProduct(this.newProduct)
         .then(() => {
           this.$router.push({ path: "/shop" });
-          // this.$router.go(0);
         })
         .catch(error => {
-          this.errors = error.response.data.errors;
+          this.errors = error;
         });
     }
   }
 };
 </script>
 
-<style scoped>
-.form-content input {
-  margin-bottom: 9px;
-  border-radius: 10px;
-  border: 2px solid black;
-  width: 100%;
-  padding: 5px;
-}
-#title {
-  margin-right: 1%;
-  width: 49%;
-}
-#price {
-  margin-left: 1%;
-  width: 49%;
-}
-::-webkit-input-placeholder {
-  text-align: center;
-}
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  text-align: center;
-}
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  text-align: center;
-}
-
-:-ms-input-placeholder {
-  text-align: center;
-}
+<style lang="scss" scoped>
+@import "./../../scss/_add-product";
 </style>

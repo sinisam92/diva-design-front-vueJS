@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import jQuery from "jquery";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
+import SingleProduct from "./components/SingleProduct";
 import About from "./components/About";
 import Login from "./components/Auth/Login";
 import SingleBlog from "./components/SingleBlog";
@@ -48,6 +49,11 @@ const routes = [
     name: "about",
     path: "/about",
     component: About
+  },
+  {
+    name: "single-product",
+    path: "/single-product/:id",
+    component: SingleProduct
   },
   {
     name: "single-blog",

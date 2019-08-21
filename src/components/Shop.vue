@@ -11,51 +11,53 @@
         </div>
         <div class="type">
           <span>
-            <strong>Type:</strong>
+            <strong>Choose category:</strong>
           </span>
           <br />
           <ul>
             <li>
+              <input id="all" type="checkbox" class="checkbox" v-model="allTypes" value="all" />
               <label for="all">All:</label>
-              <input id="all" type="checkbox" v-model="allTypes" value="all" />
             </li>
             <li>
+              <input id="accessory" type="radio" class="radio" v-model="type" value="accessory" />
               <label for="accessory">Accessories:</label>
-              <input id="accessory" type="radio" v-model="type" value="accessory" />
             </li>
             <li>
+              <input id="necklace" type="radio" class="radio" v-model="type" value="necklace" />
               <label for="necklace">Necklaces:</label>
-              <input id="necklace" type="radio" v-model="type" value="necklace" />
             </li>
             <li>
+              <input id="bracelet" type="radio" class="radio" v-model="type" value="bracelet" />
               <label for="bracelet">Bracelets:</label>
-              <input id="bracelet" type="radio" v-model="type" value="bracelet" />
             </li>
             <li>
+              <input id="earring" type="radio" class="radio" v-model="type" value="earring" />
               <label for="earring">Earrings:</label>
-              <input id="earring" type="radio" v-model="type" value="earring" />
             </li>
           </ul>
         </div>
       </div>
       <div class="row-div">
         <div class="product-div" v-for="shop in computedProducts" :key="shop.id">
-          <div class="product-image-div">
-            <img class="product-image" :src="shop.image_url" alt />
-          </div>
-          <div class="product-title">
-            <h3>{{shop.title}}</h3>
-          </div>
-          <div class="product-price">
-            <h4>{{shop.price}} RSD</h4>
-          </div>
-          <div class="product-description">
-            <p>{{shop.description}}</p>
-          </div>
+          <router-link :to="{ name: 'single-product', params: { id: shop.id }}">
+            <div class="product-image-div">
+              <img class="product-image" :src="shop.image_url" alt />
+            </div>
+            <div class="product-title">
+              <h3>{{shop.title}}</h3>
+            </div>
+            <div class="product-price">
+              <h4>{{shop.price}} {{shop.currency}}</h4>
+            </div>
+            <!-- <div class="product-description">
+              <p>{{shop.description}}</p>
+            </div>-->
+          </router-link>
         </div>
       </div>
       <router-link to="add-new-product" v-if="user && user.id === 1">
-        <button>Add New Product</button>
+        <button class="btn btn-outline-dark">Add New Product</button>
       </router-link>
       <hr />
     </div>
@@ -97,10 +99,10 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    shopService.getShop().then(blogs => {
+    shopService.getShop().then(shops => {
       next(vm => {
-        vm.shops = blogs.shop.data;
-        vm.last_page = blogs.last_page;
+        vm.shops = shops.shop.data;
+        vm.last_page = shops.last_page;
       });
     });
   }

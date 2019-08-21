@@ -2,7 +2,7 @@
   <div class="single-page">
     <div class="content-container">
       <div class="post-image">
-        <img :src="blog.image_url" alt="Sorry! ;(">
+        <img :src="blog.image_url" alt="Sorry! ;(" />
       </div>
       <!-- <div class="authot-profile-image">
 					<img src="" alt="">
@@ -41,8 +41,6 @@ export default {
         vm.blog = blog;
         vm.blogId = blog.id;
         vm.userFullName = blog.user.first_name + " " + blog.user.last_name;
-        console.log(blog.id);
-        console.log(blog);
       });
     });
   }
