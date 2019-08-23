@@ -20,6 +20,10 @@ class ShopService {
     const { data } = await http.get(`shop/${id}`);
     return data;
   }
+  async deleteSingleProduct(id) {
+    const response = await http.delete(`shop/${id}`);
+    return response;
+  }
 }
 
 const shopService = new ShopService();

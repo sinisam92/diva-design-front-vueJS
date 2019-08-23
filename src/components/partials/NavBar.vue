@@ -41,6 +41,7 @@ export default {
     ...mapActions(["logout"]),
     logoutOnSubmit() {
       this.logout();
+      this.$router.push({ path: "/home" });
     }
   }
 };

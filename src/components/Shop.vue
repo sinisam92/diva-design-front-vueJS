@@ -56,7 +56,7 @@
           </router-link>
         </div>
       </div>
-      <router-link to="add-new-product" v-if="user && user.id === 1">
+      <router-link to="/add-new-product" v-if="user && user.id === 1">
         <button class="btn btn-outline-dark">Add New Product</button>
       </router-link>
       <hr />

@@ -1,16 +1,21 @@
 import http from "./http-service";
 
 class BlogsService {
-  getBlogs() {
-    return http.get("blogs").then(({ data }) => data);
+  async getBlogs() {
+    const { data } = await http.get("blogs");
+    return data;
   }
-  getSingleBlog(id) {
-    return http.get(`blogs/${id}`).then(({ data }) => data);
+  async getSingleBlog(id) {
+    const { data } = await http.get(`blogs/${id}`);
+    return data;
   }
-  async createBlog({ title,content, image_url }) {
-    const response = await http.post('blogs', { title, content, image_url });
+  async createBlog({ title, content, image_url }) {
+    const response = await http.post("blogs", { title, content, image_url });
     return response;
-     
+  }
+  async deleteSingleBlog(id) {
+    const response = await http.delete(`blogs/${id}`);
+    return response;
   }
 }
 

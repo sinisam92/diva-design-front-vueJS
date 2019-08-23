@@ -14,9 +14,9 @@
         <div class="content-div">
           <p>{{ blog.content }}</p>
         </div>
-        <div>
+        <div v-if="user && user.id === 1">
           <button class="btn btn-outline-primary">Edit</button>
-          <button class="btn btn-outline-danger">Delete</button>
+          <button class="btn btn-outline-danger" @click="deleteBlog">Delete</button>
         </div>
       </div>
     </div>
@@ -26,6 +26,7 @@
 <script>
 import blogsService from "./../services/blogs-service";
 import { DateMixin } from "./../utils/mixins";
+import { mapGetters } from "vuex";
 export default {
   mixins: [DateMixin],
   data() {
@@ -34,6 +35,23 @@ export default {
       blogId: null,
       userFullName: null
     };
+  },
+  computed: {
+    ...mapGetters({
+      user: "getUser"
+    })
+  },
+  methods: {
+    deleteBlog() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user.id === 1) {
+        if (confirm(`Are you sure ${this.blog.title}?`)) {
+          blogsService.deleteSingleBlog(this.$route.params.id).then(() => {
+            this.$router.push({ path: "/home" });
+          });
+        }
+      }
+    }
   },
   beforeRouteEnter(to, from, next) {
     blogsService.getSingleBlog(Number(to.params.id)).then(blog => {
