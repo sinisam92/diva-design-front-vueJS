@@ -95,13 +95,15 @@
 
 <script>
 import shopService from "./../../services/shop-service";
+
 export default {
+  name: "AddNewProduct",
   data() {
     return {
       product: {
         currency: ""
       },
-      errors: [],
+      errors: {},
       items: [{ id: 1, val: "RSD" }, { id: 2, val: "€" }, { id: 3, val: "$" }],
       productId: null,
       editing: false
@@ -122,8 +124,7 @@ export default {
           this.$router.push({ path: "/shop" });
         })
         .catch(error => {
-          this.errors = error.response.data.message;
-          console.log(this.errors);
+          this.errors = error.response;
         });
     },
     productEdit() {

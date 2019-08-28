@@ -3,10 +3,12 @@
     <form @submit.prevent="onSubmit">
       <div>
         <input v-model="blog.title" name="title" type="text" placeholder="Enter Title" />
-
+        <ErrorHandler v-if="errors.title">{{ errors.title[0] }}</ErrorHandler>
         <input v-model="blog.image_url" name="image_url" type="text" placeholder="Your Blog image" />
+        <ErrorHandler v-if="errors.image">{{ errors.image[0] }}</ErrorHandler>
         <!-- <vue-editor v-model="blog.content" class="textarea"></vue-editor> -->
         <textarea v-model="blog.content" class="textarea" />
+        <ErrorHandler v-if="errors.content">{{ errors.content[0] }}</ErrorHandler>
         <!-- <ckeditor
           :editor="editor"
           v-model="newBlog.content"
@@ -33,7 +35,12 @@
 import blogsService from "./../../services/blogs-service";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 // import VueCkeditor from "vue-ckeditor2";
+import ErrorHandler from "./../partials/ErrorHandler";
 export default {
+  name: "CreateBlog",
+  components: {
+    ErrorHandler
+  },
   data() {
     return {
       blog: {},
@@ -42,7 +49,6 @@ export default {
       blogId: null
     };
   },
-  components: {},
   methods: {
     onSubmit() {
       if (this.editing) {
@@ -58,14 +64,14 @@ export default {
           this.$router.push({ name: "home" });
         })
         .catch(error => {
-          console.log((this.errors = error));
+          this.errors = error.response.data.errors;
+          // console.log(error.response.data.errors);
         });
     },
     blogEdit() {
       const user = JSON.parse(localStorage.getItem("user"));
 
       if (user.id === 1) {
-        console.log(this.blog);
         blogsService
           .editBlog(this.blogId, this.blog)
           .then(() => {
