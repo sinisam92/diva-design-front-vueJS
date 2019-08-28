@@ -77,7 +77,9 @@
           <router-link :to="{ name: 'single-blog', params: { id: blog.id }}">
             <div class="blog-post-title">{{ blog.title }}</div>
           </router-link>
-          <div class="blog-post-content">{{ blog.content }}</div>
+          <div class="blog-post-content">
+            <p>{{ blog.content }}</p>
+          </div>
           <div class="read-more">
             <router-link :to="{ name: 'single-blog', params: { id: blog.id }}">Read more &#10093;</router-link>
           </div>

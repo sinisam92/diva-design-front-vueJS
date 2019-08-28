@@ -1,5 +1,4 @@
 .flex {
-  //   display: flex;
   display: grid;
   grid-template-columns: 50% 50%;
 
@@ -13,6 +12,10 @@
       width: 90%;
       margin: 0 auto;
       text-align: center;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
     }
     .product-price {
       text-align: right;
@@ -24,4 +27,7 @@
       width: 100%;
     }
   }
+}
+.btn-outline-primary {
+  margin-right: 15px;
 }

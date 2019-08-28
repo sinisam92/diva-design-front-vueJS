@@ -17,7 +17,9 @@
       </div>
     </div>
     <div class="edit-delete-buttons" v-if="user && user.id === 1">
-      <button class="btn btn-outline-primary">Edit</button>
+      <router-link :to="{ name: 'edit-product', params: { id: product.id }}">
+        <button class="btn btn-outline-primary">Edit</button>
+      </router-link>
       <button class="btn btn-outline-danger" @click="deleteProduct">Delete</button>
     </div>
   </div>
@@ -40,7 +42,11 @@ export default {
     deleteProduct() {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user.id === 1) {
-        if (confirm(`Are you sure ${this.product.title}?`)) {
+        if (
+          confirm(
+            `Da li ste sigurni da želite da OBRIŠETE product ${this.product.title}?`
+          )
+        ) {
           shopService.deleteSingleProduct(this.$route.params.id).then(() => {
             this.$router.push({ path: "/shop" });
           });

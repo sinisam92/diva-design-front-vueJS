@@ -24,6 +24,20 @@ class ShopService {
     const response = await http.delete(`shop/${id}`);
     return response;
   }
+  async editProduct(
+    id,
+    { title, description, price, currency, image_url, type }
+  ) {
+    const response = await http.put(`shop/${id}`, {
+      title,
+      description,
+      price,
+      currency,
+      image_url,
+      type
+    });
+    return response;
+  }
 }
 
 const shopService = new ShopService();

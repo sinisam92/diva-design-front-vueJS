@@ -1,0 +1,30 @@
+.btn-outline-primary {
+  margin-right: 15px;
+}
+
+.single-page {
+  margin-top: 100px;
+  .content-container {
+    .post-image {
+      img {
+        width: 800px;
+        height: 450px;
+      }
+    }
+    .post-content {
+      text-align: center;
+      .content-div {
+        max-width: 600px;
+        display: inline;
+        vertical-align: center;
+        line-height: 1.8em;
+        p {
+          -webkit-hyphens: auto;
+          -moz-hyphens: auto;
+          -ms-hyphens: auto;
+          hyphens: auto;
+        }
+      }
+    }
+  }
+}

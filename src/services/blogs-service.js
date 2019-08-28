@@ -17,6 +17,14 @@ class BlogsService {
     const response = await http.delete(`blogs/${id}`);
     return response;
   }
+  async editBlog(id, { title, image_url, content }) {
+    const response = await http.put(`blogs/${id}`, {
+      title,
+      image_url,
+      content
+    });
+    return response;
+  }
 }
 
 const blogsService = new BlogsService();

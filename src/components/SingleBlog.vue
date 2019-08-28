@@ -15,7 +15,9 @@
           <p>{{ blog.content }}</p>
         </div>
         <div v-if="user && user.id === 1">
-          <button class="btn btn-outline-primary">Edit</button>
+          <router-link :to="{ name: 'edit-blog', params: { id: blog.id }}">
+            <button class="btn btn-outline-primary">Edit</button>
+          </router-link>
           <button class="btn btn-outline-danger" @click="deleteBlog">Delete</button>
         </div>
       </div>
@@ -32,8 +34,8 @@ export default {
   data() {
     return {
       blog: {},
-      blogId: null,
-      userFullName: null
+      userFullName: null,
+      errors: {}
     };
   },
   computed: {
@@ -45,7 +47,11 @@ export default {
     deleteBlog() {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user.id === 1) {
-        if (confirm(`Are you sure ${this.blog.title}?`)) {
+        if (
+          confirm(
+            `Da li ste sigurni da želite da OBRIŠETE blog ${this.blog.title}?`
+          )
+        ) {
           blogsService.deleteSingleBlog(this.$route.params.id).then(() => {
             this.$router.push({ path: "/home" });
           });
@@ -54,32 +60,17 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    blogsService.getSingleBlog(Number(to.params.id)).then(blog => {
-      next(vm => {
-        vm.blog = blog;
-        vm.blogId = blog.id;
-        vm.userFullName = blog.user.first_name + " " + blog.user.last_name;
-      });
+    next(vm => {
+      if (to.params.id) {
+        blogsService.getSingleBlog(Number(to.params.id)).then(blog => {
+          vm.blog = blog;
+          vm.userFullName = blog.user.first_name + " " + blog.user.last_name;
+        });
+      }
     });
   }
 };
 </script>
-
-<style scoped>
-.post-image img {
-  width: 800px;
-  height: 450px;
-}
-.single-page {
-  margin-top: 100px;
-}
-.post-content p {
-  text-align: center;
-}
-.content-div {
-  max-width: 600px;
-  display: inline;
-  vertical-align: center;
-  line-height: 1.8em;
-}
+<style lang="scss" scoped>
+@import "./../scss/_single-blog";
 </style>

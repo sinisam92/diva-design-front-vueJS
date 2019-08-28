@@ -52,7 +52,7 @@ const routes = [
   },
   {
     name: "single-product",
-    path: "/single-product/:id",
+    path: "/shop/:id",
     component: SingleProduct
   },
   {
@@ -71,8 +71,18 @@ const routes = [
     component: CreateBlog
   },
   {
+    name: "edit-blog",
+    path: "/edit-blog/:id",
+    component: CreateBlog
+  },
+  {
     name: "add-new-product",
     path: "/add-new-product",
+    component: AddNewProduct
+  },
+  {
+    name: "edit-product",
+    path: "/edit-product/:id",
     component: AddNewProduct
   }
 ];

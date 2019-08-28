@@ -37,9 +37,6 @@ a:hover {
         border-radius: 10px;
       }
     }
-    .post-container {
-      flex: 1;
-    }
   }
   .blog-post:nth-child(2) {
     display: -webkit-box;
@@ -72,6 +69,7 @@ a:hover {
 }
 
 .post-container {
+  flex: 1;
   position: relative;
   width: 420px;
   display: inline-block;
@@ -97,11 +95,17 @@ a:hover {
     padding-top: 20px;
   }
   .blog-post-content {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
+    p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+    }
   }
 
   .read-more {
